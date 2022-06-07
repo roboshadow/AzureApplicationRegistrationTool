@@ -84,8 +84,8 @@ function Add-Robo-Permissions($clientId) {
 function Consent-Robo-Permissions($tenantId, $appId) {
     Start-Sleep -Seconds 5
     Clear-Host
-    Write-Host "Waiting for App Creation, admin consent required. (A new window will be opened in 60 seconds)"
-    Start-Sleep -Seconds 55
+    Write-Host "Waiting for App Creation, admin consent required. (A new window will be opened in 2 minutes)"
+    Start-Sleep -Seconds 120
 
     Invoke-Expression "cmd.exe /C start https://login.microsoftonline.com/'$($tenantId)'/adminconsent?client_id='$($appId)'"
 }
