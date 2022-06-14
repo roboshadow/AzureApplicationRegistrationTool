@@ -1,14 +1,23 @@
-﻿function Load-Az-Module() {
+function Load-Az-Module() {
     if (-not(Get-InstalledModule Az -ErrorAction silentlycontinue)) {
-        Write-Host "Installing Az Module..." -NoNewline
-        Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
-        Import-Module Az
+        try {
+            Write-Host "Installing Az Module..."
+            Install-Module -Name Az -AllowClobber -Repository PSGallery -Force -ErrorAction Inquire
+            Import-Module Az
+        }
+        catch {
+            Write-Host "Error Installing Module - Antivirus or Permissions may be blocking this script. Please try installing manually if errors continue, 'Install-Module -Name Az'"
+        }
     }
     else {
-        Write-Host "Importing Az Module..." -NoNewline
-        Import-Module Az
+        try {
+            Write-Host "Importing Az Module..."
+            Import-Module Az -ErrorAction Inquire
+        }
+        catch {
+            Write-Host "Error Importing Module - Antivirus or Permissions may be blocking this script."
+        }
     }
-    Write-Host " Done"
 }
 
 function Check-Existing-Application($appName) {
@@ -83,7 +92,6 @@ function Add-Robo-Permissions($clientId) {
 
 function Consent-Robo-Permissions($tenantId, $appId) {
     Start-Sleep -Seconds 5
-    Clear-Host
     Write-Host "Waiting for App Creation, admin consent required. (A new window will be opened in 2 minutes)"
     Start-Sleep -Seconds 120
 
@@ -100,7 +108,7 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 Load-Az-Module
 
 Write-Host "Global Administrator sign-in required."
-Connect-AzAccount | Out-Null
+Connect-AzAccount -WarningAction Inquire | Out-Null
 ($tenant = Get-AzTenant) | Out-Null
 
 $appName = "RoboshadowAdSync"
@@ -116,7 +124,6 @@ $clientSecret = Create-Robo-Secret -clientId $clientId
 Add-Robo-Permissions -clientId $clientId
 Consent-Robo-Permissions -tenantId $tenantId -appId $appId
 
-Clear-Host
 Write-Host "----------------------------------------------------"
 Write-Host "Tenant Id: '$($tenantId)'"
 Write-Host "Client Id: '$($appId)'"
