@@ -124,6 +124,9 @@ $clientSecret = Create-Robo-Secret -clientId $clientId
 Add-Robo-Permissions -clientId $clientId
 Consent-Robo-Permissions -tenantId $tenantId -appId $appId
 
+Write-Host ""
+Write-Host ""
+Write-Host "Please enter the following credentials on the RoboShadow Portal to complete the app registration process. The full guide for this is on the github page at https://github.com/roboshadow/AzureApplicationRegistrationTool"
 Write-Host "----------------------------------------------------"
 Write-Host "Tenant Id: '$($tenantId)'"
 Write-Host "Client Id: '$($appId)'"
