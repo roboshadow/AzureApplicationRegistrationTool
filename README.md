@@ -33,6 +33,13 @@ A new tab will be opened on your default browser, please sign in with the same G
 **Step 7**:
 You will be automatically redirected to the Roboshadow Portal, and if you look back at the powershell window, the 3 required values are outputted for you to use when setting up AD Sync.
 
+If you are not redicted please login to the roboshadow portal at https://portal.roboshadow.com/
+
 ![image](https://user-images.githubusercontent.com/77623363/170298243-73faf97e-bfe1-4cde-bb7b-b0b1b63c5a62.png)
 
+Use these 3 values and input them into the Azure AD Sync form, please see the screenshots below.
 ![image](https://user-images.githubusercontent.com/77623363/170298495-445de3d1-7afa-460f-9c4b-23e1ea439360.png)
+
+![image](https://user-images.githubusercontent.com/77623363/179209402-0e98dd6c-b7ba-4d7a-aac5-3e2a78adbcc3.png)
+
+![image](https://user-images.githubusercontent.com/77623363/179209862-497f5db9-42c5-44d5-895c-61be58a25d72.png)
