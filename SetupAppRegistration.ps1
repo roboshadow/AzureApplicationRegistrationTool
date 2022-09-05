@@ -1,8 +1,8 @@
 function Load-Az-Module() {
-    if (-not(Get-InstalledModule Az -ErrorAction silentlycontinue)) {
+    if (-not(Get-InstalledModule Az -RequiredVersion 8.2.0 -ErrorAction silentlycontinue)) {
         try {
             Write-Host "Installing Az Module..."
-            Install-Module -Name Az -AllowClobber -Repository PSGallery -Force -ErrorAction Inquire
+            Install-Module -Name Az -RequiredVersion 8.2.0 -AllowClobber -Repository PSGallery -Force -ErrorAction Inquire
             Import-Module Az
         }
         catch {
